@@ -32,13 +32,13 @@ const Footer = () => {
           <h3 className="text-2xl pb-3 font-semibold">My Account</h3>
           <ul>
             <li>
-              <Link to="">Login</Link>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="">My account</Link>
+              <Link to="/dashboard/my-profile">My account</Link>
             </li>
             <li>
-              <Link to="">Check out</Link>
+              <Link to="/dashboard/checkout">Check out</Link>
             </li>
           </ul>
         </div>
@@ -48,13 +48,13 @@ const Footer = () => {
           <h3 className="text-2xl pb-3 font-semibold">About site</h3>
           <ul>
             <li>
-              <Link to="">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
-              <Link to="">Register</Link>
+              <Link to="/register">Register</Link>
             </li>
             <li>
-              <Link to="">Portfolio</Link>
+              <Link to="/portfolio">Portfolio</Link>
             </li>
           </ul>
         </div>
@@ -62,7 +62,11 @@ const Footer = () => {
         <div>
           <h3 className="text-2xl pb-3 font-semibold">We accept</h3>
           <div className="flex space-x-3">
-            <img className="w-[50px] rounded-sm" src={MasterCard} alt="mastercard" />
+            <img
+              className="w-[50px] rounded-sm"
+              src={MasterCard}
+              alt="mastercard"
+            />
             <img className="w-[50px] rounded-sm" src={Visa} alt="visa card" />
             <img className="w-[50px] rounded-sm" src={Amex} alt="amex card" />
           </div>
