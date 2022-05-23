@@ -9,7 +9,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link  to="/login">Login</Link>
+        <Link to="/login">Login</Link>
       </li>
     </>
   );
@@ -41,7 +41,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Anchor Tools
+          Anchor Auto
         </Link>
       </div>
       {/* desktop version menu */}
