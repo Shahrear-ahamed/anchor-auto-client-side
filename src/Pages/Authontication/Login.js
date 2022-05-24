@@ -8,6 +8,7 @@ import {
 import auth from "../../firebase.init";
 import UseToken from "../../Hooks/UseToken";
 import google from "../../Assets/google.svg";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
+      toast.success("Login successfully");
       navigate(from, { replace: true });
     }
   });
@@ -39,7 +41,7 @@ const Login = () => {
 
   // ui are here
   return (
-    <div className="minMax grid items-center">
+    <div className="grid items-center ">
       <div className="container mx-auto w-[90%] grid gap-5 grid-cols-1 md:grid-cols-2 ">
         <div>
           <h2 className="text-4xl py-4">New Customer</h2>
@@ -141,11 +143,14 @@ const Login = () => {
           </form>
           <div>
             <button
-              onClick={() => signInWithGoogle()}
+              onClick={() => {
+                loadError = "";
+                signInWithGoogle();
+              }}
               className="flex space-x-3 items-center border-secondary border-2 rounded-full py-3 px-16 mt-5 shadow-md"
             >
               <img src={google} alt="google" />
-              <span className="text-xl font-semibold">
+              <span className="text-base font-semibold">
                 Continue With google
               </span>
             </button>

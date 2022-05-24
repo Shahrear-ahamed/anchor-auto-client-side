@@ -49,8 +49,8 @@ const Registration = () => {
     }
   };
   return (
-    <section className="minMax grid items-center ">
-      <div className="flex flex-col items-center mx-auto mb-5 w-[90%] max-w-[500px] border-2 border-gray-100 rounded-lg px-4 md:px-10 py-3 shadow-lg">
+    <section className="grid items-center ">
+      <div className="flex flex-col items-center mx-auto w-[90%] max-w-[550px] border-2 border-gray-100 rounded-lg px-4 md:px-10 py-5 my-14 shadow-lg">
         <h2 className="text-3xl font-bold text-center text-[#f2b800]">
           Register
         </h2>
@@ -180,23 +180,28 @@ const Registration = () => {
           </p>
 
           {loading || gLoading ? (
-            <button className="btn loading">loading</button>
+            <button className="bg-secondary loading mb-3">loading</button>
           ) : (
             <input
-              className="login-button text-black w-32 py-3 rounded-sm mt-5 cursor-pointer"
+              className="login-button mb-3 text-black w-32 py-3 rounded-sm mt-5 cursor-pointer"
               type="submit"
               value="Register"
             />
           )}
         </form>
-        {loadError && <p className="text-red-500 text-left">{loadError}</p>}
+        {loadError && (
+          <p className="text-red-500 text-left my-0">{loadError}</p>
+        )}
         <div>
           <button
-            onClick={() => signInWithGoogle()}
-            className="flex space-x-3 items-center border-secondary border-2 rounded-full py-3 px-16 mt-5 shadow-md"
+            onClick={() => {
+              signInWithGoogle();
+              loadError = "";
+            }}
+            className="flex space-x-3 items-center border-secondary border-2 rounded-full py-3 px-16 mt-3 shadow-md"
           >
             <img src={google} alt="google" />
-            <span className="text-xl font-semibold">Continue With google</span>
+            <span className="text-base font-semibold">Continue With google</span>
           </button>
         </div>
       </div>

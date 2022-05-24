@@ -3,9 +3,13 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
+import Loading from "./Loading";
 
 const Navbar = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  if(loading){
+    return <Loading />
+  }
   // menu items are here
   const menuItems = (
     <>
@@ -14,7 +18,7 @@ const Navbar = () => {
       </li>
       {user ? (
         <li>
-          <button onClick={()=>signOut(auth)}>Log out</button>
+          <button onClick={() => signOut(auth)}>Log out</button>
         </li>
       ) : (
         <li>
@@ -24,7 +28,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="z-50 navbar bg-base-100 shadow-md justify-between">
+    <nav className="z-50 navbar bg-base-100 shadow-md justify-between">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -80,7 +84,7 @@ const Navbar = () => {
           </svg>
         </label> */}
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -79,19 +79,22 @@ const Footer = () => {
         <p>&copy;{year} All right reserved by Anchor auto</p>
         <ul className="text-gray-600 text-xl flex justify-center pt-5 md:pt-0 items-center space-x-5">
           <li>
-            <Link to="">
+            <a href="https://www.facebook.com/its.shahrear/" target="blank">
               <FaFacebook />
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="">
+            <a href="https://github.com/Shahrear-ahamed" target="blank">
               <FaGithub />
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="">
+            <a
+              href="https://www.linkedin.com/in/shahrear-ahamed-b0376623b"
+              target="blank"
+            >
               <FaLinkedin />
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

@@ -16,10 +16,10 @@ const PassReset = () => {
     await sendPasswordResetEmail(data.email);
   };
   return (
-    <div className="minMax grid items-center">
+    <div className="grid items-center">
       <div className="container mx-auto w-[90%] ">
-        <div className="flex flex-col items-center mx-auto mb-5 w-[90%] max-w-[500px]">
-          <h2 className="text-3xl font-bold text-[#f2b800]">Reset mail</h2>
+        <div className="flex flex-col items-center mx-auto my-14 w-[90%] max-w-[500px] border shadow-lg rounded-lg p-5">
+          <h2 className="text-3xl font-bold text-[#f2b800] mb-3">Reset password</h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="text-center w-full max-w-[450px]"
