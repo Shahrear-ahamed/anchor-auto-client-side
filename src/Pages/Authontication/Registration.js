@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSendEmailVerification,
+  useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
@@ -9,22 +10,23 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import UseToken from "../../Hooks/UseToken";
+import google from "../../Assets/google.svg";
 
 const Registration = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [sendEmailVerification] = useSendEmailVerification(auth);
   const [updateProfile] = useUpdateProfile(auth);
   const from = location.state?.form?.pathname || "/";
-  console.log(user);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [token] = UseToken(user);
+  const [token] = UseToken(user || gUser);
 
   useEffect(() => {
     if (token) {
@@ -33,8 +35,8 @@ const Registration = () => {
   });
 
   let loadError;
-  if (error) {
-    loadError = error.code.split("/")[1];
+  if (error || gError) {
+    loadError = error?.code?.split("/")[1] || gError?.code?.split("/")[1];
   }
 
   // submit data
@@ -166,7 +168,6 @@ const Registration = () => {
               )}
             </label>
           </div>
-          {loadError && <p className="text-red-500 text-left">{loadError}</p>}
           <p className="text-left">
             <Link className="login-secondary" to="/login">
               Already have an account?
@@ -178,7 +179,7 @@ const Registration = () => {
             </Link>
           </p>
 
-          {loading ? (
+          {loading || gLoading ? (
             <button className="btn loading">loading</button>
           ) : (
             <input
@@ -188,6 +189,16 @@ const Registration = () => {
             />
           )}
         </form>
+        {loadError && <p className="text-red-500 text-left">{loadError}</p>}
+        <div>
+          <button
+            onClick={() => signInWithGoogle()}
+            className="flex space-x-3 items-center border-secondary border-2 rounded-full py-3 px-16 mt-5 shadow-md"
+          >
+            <img src={google} alt="google" />
+            <span className="text-xl font-semibold">Continue With google</span>
+          </button>
+        </div>
       </div>
     </section>
   );

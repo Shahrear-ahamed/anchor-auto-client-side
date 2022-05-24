@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import UseToken from "../../Hooks/UseToken";
+import google from "../../Assets/google.svg";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [token] = UseToken(user);
+  const [token] = UseToken(user || gUser);
   const from = location.state?.form?.pathname || "/";
 
   useEffect(() => {
@@ -24,8 +29,8 @@ const Login = () => {
     }
   });
   let loadError;
-  if (error) {
-    loadError = error.code.split("/")[1];
+  if (error || gError) {
+    loadError = error?.code?.split("/")[1] || gError?.code?.split("/")[1];
   }
   // submit data
   const onSubmit = async (data) => {
@@ -117,14 +122,13 @@ const Login = () => {
                 )}
               </label>
             </div>
-            {loadError && <p className="text-red-500 text-left">{loadError}</p>}
             <p className="pt-3 text-left">
               <Link className="login-secondary" to="/password-reset">
                 Forget Password?
               </Link>
             </p>
 
-            {loading ? (
+            {loading || gLoading ? (
               <button className="btn loading">loading</button>
             ) : (
               <input
@@ -133,7 +137,19 @@ const Login = () => {
                 value="Login"
               />
             )}
+            {loadError && <p className="text-red-500 text-left">{loadError}</p>}
           </form>
+          <div>
+            <button
+              onClick={() => signInWithGoogle()}
+              className="flex space-x-3 items-center border-secondary border-2 rounded-full py-3 px-16 mt-5 shadow-md"
+            >
+              <img src={google} alt="google" />
+              <span className="text-xl font-semibold">
+                Continue With google
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
