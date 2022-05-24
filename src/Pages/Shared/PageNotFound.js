@@ -6,9 +6,9 @@ const PageNotFound = () => {
   const navigate = useNavigate();
   return (
     <section className="minMax z-10 mt-5">
-      <div className="md:flex items-center justify-evenly text-center">
+      <div className="md:flex items-center justify-evenly text-center max-w-full w-[90%] mx-auto">
         <div>
-          <h2 className="text-5xl font-semibold py-8">We are sorry!</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold py-4 md:py-8">We are sorry!</h2>
           <p className="text-lg pb-4">
             You lost connection! we understand. Go to home and explore more
           </p>

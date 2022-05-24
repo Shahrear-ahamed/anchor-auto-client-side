@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import UseToken from "../../Hooks/UseToken";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const {
@@ -13,15 +15,20 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [token] = UseToken(user);
+  const from = location.state?.form?.pathname || "/";
 
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  });
   let loadError;
   if (error) {
     loadError = error.code.split("/")[1];
   }
-
   // submit data
   const onSubmit = async (data) => {
-    console.log(data);
     await signInWithEmailAndPassword(data.email, data.password);
   };
 

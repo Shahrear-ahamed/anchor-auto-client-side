@@ -1,11 +1,10 @@
 import React from "react";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const PassReset = () => {
-  const navigage = useNavigate();
   const [sendPasswordResetEmail, sending, error] =
     useSendPasswordResetEmail(auth);
   const {
@@ -13,9 +12,8 @@ const PassReset = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    sendPasswordResetEmail(data.email);
+  const onSubmit = async (data) => {
+    await sendPasswordResetEmail(data.email);
   };
   return (
     <div className="minMax grid items-center">

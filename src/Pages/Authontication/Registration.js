@@ -1,30 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSendEmailVerification,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import UseToken from "../../Hooks/UseToken";
 
 const Registration = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [sendEmailVerification] = useSendEmailVerification(auth);
   const [updateProfile] = useUpdateProfile(auth);
+  const from = location.state?.form?.pathname || "/";
+  console.log(user);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [token] = UseToken(user);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  });
 
   let loadError;
   if (error) {
     loadError = error.code.split("/")[1];
   }
-  console.log(user);
 
   // submit data
   const onSubmit = async (data) => {
@@ -32,11 +43,12 @@ const Registration = () => {
       await createUserWithEmailAndPassword(data.email, data.password);
       await sendEmailVerification(data.email);
       await updateProfile({ displayName: data.name });
+      toast.success("Email verification was send. please verify your account");
     }
   };
   return (
     <section className="minMax grid items-center ">
-      <div className="flex flex-col items-center mx-auto mb-5 w-[90%] max-w-[500px] border-2 border-gray-100 rounded-lg px-10 py-3 shadow-lg">
+      <div className="flex flex-col items-center mx-auto mb-5 w-[90%] max-w-[500px] border-2 border-gray-100 rounded-lg px-4 md:px-10 py-3 shadow-lg">
         <h2 className="text-3xl font-bold text-center text-[#f2b800]">
           Register
         </h2>

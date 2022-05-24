@@ -12,7 +12,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-gray-200">
-      <div className="container mx-auto py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container mx-auto w-[90%] py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/** section add  one*/}
         <div className="font-normal">
           <h3 className="text-2xl pb-3 font-semibold">Contact Us</h3>
@@ -75,9 +75,9 @@ const Footer = () => {
       <div className="bg-orange-400 h-[2px]"></div>
 
       {/* footer bottom are here */}
-      <div className="container mx-auto py-3 flex justify-between">
+      <div className="container w-[90%] mx-auto py-3 flex flex-col md:flex-row justify-between">
         <p>&copy;{year} All right reserved by Anchor auto</p>
-        <ul className="text-gray-600 text-xl flex items-center space-x-5">
+        <ul className="text-gray-600 text-xl flex justify-center pt-5 md:pt-0 items-center space-x-5">
           <li>
             <Link to="">
               <FaFacebook />
