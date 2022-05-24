@@ -8,6 +8,7 @@ import Footer from "./Pages/Shared/Footer";
 import Navbar from "./Pages/Shared/Navbar";
 import PageNotFound from "./Pages/Shared/PageNotFound";
 import "react-toastify/dist/ReactToastify.css";
+import Blog from "./Pages/Home/Blog";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog/:id" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/password-reset" element={<PassReset />} />
