@@ -36,3 +36,10 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.banner {
+  background: url("Assets/banner-img.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

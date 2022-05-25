@@ -11,7 +11,7 @@ import MasterCard from "../../Assets/weAccept/mc.svg";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-200">
+    <footer className="bg-black text-white">
       <div className="container mx-auto w-[90%] py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/** section add  one*/}
         <div className="font-normal">
@@ -77,20 +77,29 @@ const Footer = () => {
       {/* footer bottom are here */}
       <div className="container w-[90%] mx-auto py-3 flex flex-col md:flex-row justify-between">
         <p>&copy;{year} All right reserved by Anchor auto</p>
-        <ul className="text-gray-600 text-xl flex justify-center pt-5 md:pt-0 items-center space-x-5">
+        <ul className="text-white text-xl flex justify-center pt-5 md:pt-0 items-center space-x-5">
           <li>
-            <a href="https://www.facebook.com/its.shahrear/" target="blank">
+            <a
+              href="https://www.facebook.com/its.shahrear/"
+              className="hover:text-gray-300"
+              target="blank"
+            >
               <FaFacebook />
             </a>
           </li>
           <li>
-            <a href="https://github.com/Shahrear-ahamed" target="blank">
+            <a
+              href="https://github.com/Shahrear-ahamed"
+              className="hover:text-gray-300"
+              target="blank"
+            >
               <FaGithub />
             </a>
           </li>
           <li>
             <a
               href="https://www.linkedin.com/in/shahrear-ahamed-b0376623b"
+              className="hover:text-gray-300"
               target="blank"
             >
               <FaLinkedin />
