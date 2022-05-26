@@ -41,7 +41,7 @@ const Login = () => {
 
   // ui are here
   return (
-    <div className="grid items-center ">
+    <div className="grid items-center my-5">
       <div className="container mx-auto w-[90%] grid gap-5 grid-cols-1 md:grid-cols-2 ">
         <div>
           <h2 className="text-4xl py-4">New Customer</h2>
@@ -54,7 +54,7 @@ const Login = () => {
             onClick={() => navigate("/register")}
             className="py-2 px-6 rounded-sm login-button my-5"
           >
-            Let's Continue
+            Let's Register
           </button>
         </div>
         <div className="flex flex-col items-center mb-5">

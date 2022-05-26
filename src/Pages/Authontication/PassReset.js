@@ -18,7 +18,7 @@ const PassReset = () => {
   return (
     <div className="grid items-center">
       <div className="container mx-auto w-[90%] ">
-        <div className="flex flex-col items-center mx-auto my-14 w-[90%] max-w-[500px] border shadow-lg rounded-lg p-5">
+        <div className="flex flex-col items-center mx-auto my-[70px] w-[90%] max-w-[500px] border shadow-lg rounded-lg p-6">
           <h2 className="text-3xl font-bold text-[#f2b800] mb-3">Reset password</h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
