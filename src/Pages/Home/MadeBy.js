@@ -2,7 +2,7 @@ import React from "react";
 
 const MadeBy = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 md:h-52 items-center container w-[90%] mx-auto ">
+    <div className="grid grid-cols-1 md:grid-cols-2 md:h-52 items-center container w-[90%] mx-auto my-3">
       <div>
         <h2 className="text-xl md:text-3xl font-semibold">
           With One-click Processing, one laser cutter is able to process

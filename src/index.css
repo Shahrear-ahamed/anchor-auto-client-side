@@ -16,6 +16,10 @@
   @apply text-gray-700 hover:text-secondary duration-300;
 }
 
+.dashboard-title{
+  @apply text-primary text-3xl font-semibold
+}
+
 html {
   height: 100%;
 }

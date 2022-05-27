@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { Link } from "react-scroll";
 import Loading from "../Shared/Loading";
-import OrderNow from "./OrderNow";
+import OrderNowModal from "./OrderNowModal";
 
 const SingleProduct = () => {
+  const [modal, setModal] = useState(false);
   const { id } = useParams();
   const { data: tool, isLoading } = useQuery("singleProduct", () =>
     fetch(`http://localhost:5000/product/${id}`, {
@@ -25,15 +25,13 @@ const SingleProduct = () => {
         <div className="sticky top-0">
           <img src={img} alt={`${name} images`} className="mx-auto py-5" />
           <div className="flex justify-center">
-            <Link
-              delay={200}
-              to="order"
-              smooth={true}
-              duration={500}
-              className="bg-secondary text-white py-2 px-10 cursor-pointer"
+            <label
+              onClick={() => setModal(true)}
+              for="OrderNow-btn"
+              class="bg-secondary text-white py-2 px-10 cursor-pointer modal-button"
             >
               Order Now
-            </Link>
+            </label>
           </div>
         </div>
         <div>
@@ -61,7 +59,7 @@ const SingleProduct = () => {
             </div>
             <p className="pl-5 py-3">{desc}</p>
           </div>
-          <OrderNow tool={tool} />
+          {modal && <OrderNowModal setModal={setModal} tool={tool} />}
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const Blogs = () => {
       .then((data) => setBlogs(data));
   }, []);
   return (
-    <div className="bg-[#24201f] text-white py-10">
+    <div className="bg-gray-800 text-white py-10">
       <div className="container w-[90%] mx-auto ">
         <h2 className="text-4xl pb-3 font-semibold inline-block border-b-2 border-b-secondary">
           Blogs & News

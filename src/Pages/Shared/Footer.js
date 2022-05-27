@@ -11,7 +11,7 @@ import MasterCard from "../../Assets/weAccept/mc.svg";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto w-[90%] py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/** section add  one*/}
         <div className="font-normal">

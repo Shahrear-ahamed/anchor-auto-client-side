@@ -64,8 +64,8 @@ const Navbar = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end lg:hidden">
-        {/* <label
-          htmlFor="dashboard-menu"
+        <label
+          htmlFor="dashboard"
           tabIndex="0"
           className="btn btn-ghost lg:hidden"
         >
@@ -83,7 +83,7 @@ const Navbar = () => {
               d="M4 6h16M4 12h8m-8 6h16"
             />
           </svg>
-        </label> */}
+        </label>
       </div>
     </nav>
   );

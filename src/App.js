@@ -13,6 +13,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import RequireAuth from "./Pages/Authontication/RequireAuth";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import SingleProduct from "./Pages/Product/SingleProduct";
+import MyOrders from "./Pages/Dashboard/MyOrders";
+import AddReview from "./Pages/Dashboard/AddReview";
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
           }
         >
           <Route index element={<MyProfile />} />
+          <Route path="/dashboard/manage-all-product" element={<MyProfile />} />
+          <Route path="/dashboard/add-product" element={<MyProfile />} />
+          <Route path="/dashboard/make-admin" element={<MyProfile />} />
+          <Route path="/dashboard/manage-product" element={<MyProfile />} />
+          <Route path="/dashboard/my-orders" element={<MyOrders />} />
+          <Route path="/dashboard/add-review" element={<AddReview />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
