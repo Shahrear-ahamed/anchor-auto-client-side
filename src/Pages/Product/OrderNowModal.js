@@ -26,6 +26,7 @@ const OrderNow = ({ tool, setModal }) => {
       productName: name,
       paymentStatus: false,
       orderStatus: "Pending",
+      price: tool.price,
     };
     fetch(`http://localhost:5000/order/${user.email}`, {
       method: "POST",
@@ -37,21 +38,21 @@ const OrderNow = ({ tool, setModal }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success(data.message);
+          setModal(false);
         }
       });
   };
   return (
     <>
-      <input type="checkbox" id="OrderNow-btn" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box py-3 px-5">
+      <input type="checkbox" id="OrderNow-btn" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box py-3 px-5">
           <div name="order">
             <label
-              for="OrderNow-btn"
-              class="btn btn-sm btn-circle bg-secondary border-0 absolute right-2 top-2 hover:rotate-180 duration-200 text-white hover:text-gray-200"
+              htmlFor="OrderNow-btn"
+              className="btn btn-sm btn-circle bg-secondary border-0 absolute right-2 top-2 hover:rotate-180 duration-200 text-white hover:text-gray-200"
             >
               ✕
             </label>
@@ -163,7 +164,6 @@ const OrderNow = ({ tool, setModal }) => {
               <input
                 className="bg-secondary text-white px-7 py-2 cursor-pointer hover:bg-black"
                 type="submit"
-                setModal={() => setModal(false)}
                 value="Place Order"
               />
             </form>

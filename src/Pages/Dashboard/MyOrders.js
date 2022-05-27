@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import UseDataLoad from "../../Hooks/UseDataLoad";
 import Loading from "../Shared/Loading";
 
 const MyOrders = () => {
+  const navigate = useNavigate();
   const [orders, isLoading] = UseDataLoad();
   if (isLoading) {
     return <Loading />;
@@ -34,7 +36,10 @@ const MyOrders = () => {
                       Payment done
                     </span>
                   ) : (
-                    <span className="btn btn-sm border-0 hover:bg-red-600 bg-red-500 text-white">
+                    <span
+                      onClick={() => navigate(`/dashboard/payment/${order._id}`)}
+                      className="btn btn-sm border-0 hover:bg-red-600 bg-red-500 text-white"
+                    >
                       Pay
                     </span>
                   )}

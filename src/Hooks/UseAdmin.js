@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const UseAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
   useEffect(() => {
-    const url = `http://localhost:5000/admin/${user}`;
+    const url = `http://localhost:5000/user/${user}`;
     fetch(url, {
       method: "GET",
       headers: {

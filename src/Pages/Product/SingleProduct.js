@@ -27,8 +27,8 @@ const SingleProduct = () => {
           <div className="flex justify-center">
             <label
               onClick={() => setModal(true)}
-              for="OrderNow-btn"
-              class="bg-secondary text-white py-2 px-10 cursor-pointer modal-button"
+              htmlFor="OrderNow-btn"
+              className="bg-secondary text-white py-2 px-10 cursor-pointer modal-button"
             >
               Order Now
             </label>

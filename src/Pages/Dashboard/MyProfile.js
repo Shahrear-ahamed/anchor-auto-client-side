@@ -1,41 +1,42 @@
-import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useState } from "react";
+import { useAuthState, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
+  const [updateProfile,] = useUpdateProfile(auth);
   const [user] = useAuthState(auth);
   const imageApi = "ba4ff4edefd1c59c93a156adaaba5a42";
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
   const { data: userData, isLoading } = useQuery("myProfile", () =>
-    fetch(`http://localhost:5000/admin/${user.email}`, {
+    fetch(`http://localhost:5000/user/${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     }).then((res) => res.json())
   );
-
+  
   if (isLoading) {
     return <Loading />;
   }
-  console.log(userData);
   const onSubmit = async (data) => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
 
     const userAccount = {
-      ...userData,
       name: user.displayName,
-      phone: data.phone,
+      phone: data.number,
       address: data.address,
+      education: data.education,
+      linkedin: data.linkedin,
     };
 
     const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
@@ -45,8 +46,22 @@ const MyProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
+          updateProfile({ photoURL: data.data.url });
+          fetch(`http://localhost:5000/userupdate/${user._id}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+            body: JSON.stringify(userAccount),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              // setUpdate(!update);
+              toast.success("Update successfully");
+            });
         }
       });
   };
@@ -133,6 +148,52 @@ const MyProfile = () => {
               {errors.address?.type === "required" && (
                 <span className="label-text text-red-600">
                   {errors.address.message}
+                </span>
+              )}
+            </label>
+          </div>
+          <div className="form-control w-full max-w-md">
+            <label className="label">
+              <span className="label-text">Education</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Your Address"
+              {...register("education", {
+                required: {
+                  value: true,
+                  message: "education is required",
+                },
+              })}
+              className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
+            />
+            <label className="label">
+              {errors.education?.type === "required" && (
+                <span className="label-text text-red-600">
+                  {errors.education.message}
+                </span>
+              )}
+            </label>
+          </div>
+          <div className="form-control w-full max-w-md">
+            <label className="label">
+              <span className="label-text">Linkedin Profile</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Your Address"
+              {...register("linkedin", {
+                required: {
+                  value: true,
+                  message: "Linkedin is required",
+                },
+              })}
+              className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
+            />
+            <label className="label">
+              {errors.linkedin?.type === "required" && (
+                <span className="label-text text-red-600">
+                  {errors.linkedin.message}
                 </span>
               )}
             </label>
