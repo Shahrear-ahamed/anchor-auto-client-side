@@ -1,17 +1,20 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CheckOut = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
   const [serverClientSecret, setServerClientSecret] = useState("");
   const { _id, price, name, email, phone, quantity } = order;
-  console.log(order);
 
+  const total = parseInt(quantity) * price;
   useEffect(() => {
     fetch("http://localhost:5000/make-payment", {
       method: "POST",
@@ -19,7 +22,7 @@ const CheckOut = ({ order }) => {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
-      body: JSON.stringify({ price }),
+      body: JSON.stringify({ total }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -27,7 +30,7 @@ const CheckOut = ({ order }) => {
           setServerClientSecret(data.clientSecret);
         }
       });
-  }, [price]);
+  }, [total]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,11 +63,11 @@ const CheckOut = ({ order }) => {
             name,
             email,
             phone,
-            payment: parseInt(quantity) * price,
           },
         },
       }
     );
+    console.log(paymentIntent, intentError);
     if (intentError) {
       setProcessing(false);
       setServerClientSecret(intentError?.message);
@@ -72,23 +75,27 @@ const CheckOut = ({ order }) => {
       setServerClientSecret("");
       setTransactionId(paymentIntent?.id);
       setSuccess("Congrats! Payment is done");
-
-      // store payment info in database
-      const payment = {
-        appointment: _id,
-        transactionId: paymentIntent.id,
+      const paymentData = {
+        email,
+        name,
+        phone,
+        total,
+        transactionId,
       };
-      fetch(`https://doctors-portal-shahrear.herokuapp.com/booking/${_id}`, {
-        method: "PATCH",
+
+      fetch(`http://localhost:5000/order/${_id}`, {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
-        body: JSON.stringify(payment),
+        body: JSON.stringify(paymentData),
       })
         .then((res) => res.json())
         .then((data) => {
+          toast.success("Payment Done! Please wait for delivery.");
           setProcessing(false);
+          navigate("/dashboard/my-orders");
         });
     }
   };
