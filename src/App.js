@@ -18,6 +18,8 @@ import Payment from "./Pages/Dashboard/Payment";
 import MyReviews from "./Pages/Dashboard/MyReviews";
 import ManageAllProduct from "./Pages/Dashboard/ManageAllProduct";
 import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders";
+import AddProduct from "./Pages/Dashboard/AddProduct";
+import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 
 function App() {
   return (
@@ -42,10 +44,16 @@ function App() {
           }
         >
           <Route index element={<MyProfile />} />
-          <Route path="/dashboard/manage-all-product" element={<ManageAllOrders />} />
-          <Route path="/dashboard/add-product" element={<MyProfile />} />
-          <Route path="/dashboard/make-admin" element={<MyProfile />} />
-          <Route path="/dashboard/manage-product" element={<ManageAllProduct />} />
+          <Route
+            path="/dashboard/manage-all-product"
+            element={<ManageAllOrders />}
+          />
+          <Route path="/dashboard/add-product" element={<AddProduct />} />
+          <Route path="/dashboard/make-admin" element={<MakeAdmin />} />
+          <Route
+            path="/dashboard/manage-product"
+            element={<ManageAllProduct />}
+          />
           <Route path="/dashboard/my-orders" element={<MyOrders />} />
           <Route path="/dashboard/my-reviews" element={<MyReviews />} />
           <Route path="/dashboard/payment/:id" element={<Payment />} />

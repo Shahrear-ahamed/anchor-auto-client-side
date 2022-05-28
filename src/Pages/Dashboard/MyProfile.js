@@ -52,7 +52,6 @@ const MyProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          console.log(userAccount);
           updateProfile({ photoURL: data.data.url });
           fetch(`http://localhost:5000/userupdate/${user._id}`, {
             method: "PUT",
