@@ -22,6 +22,7 @@ import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import AllProducts from "./Pages/Product/AllProducts";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import MyBlog from "./Pages/MyBlog/MyBlog";
+import RequireAdmin from "./Pages/Authontication/RequireAdmin";
 
 function App() {
   return (
@@ -48,13 +49,35 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route
             path="/dashboard/manage-all-product"
-            element={<ManageAllOrders />}
+            element={
+              <RequireAdmin>
+                <ManageAllOrders />
+              </RequireAdmin>
+            }
           />
-          <Route path="/dashboard/add-product" element={<AddProduct />} />
-          <Route path="/dashboard/make-admin" element={<MakeAdmin />} />
+          <Route
+            path="/dashboard/add-product"
+            element={
+              <RequireAdmin>
+                <AddProduct />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="/dashboard/make-admin"
+            element={
+              <RequireAdmin>
+                <MakeAdmin />
+              </RequireAdmin>
+            }
+          />
           <Route
             path="/dashboard/manage-product"
-            element={<ManageAllProduct />}
+            element={
+              <RequireAdmin>
+                <ManageAllProduct />
+              </RequireAdmin>
+            }
           />
           <Route path="/dashboard/my-orders" element={<MyOrders />} />
           <Route path="/dashboard/my-reviews" element={<MyReviews />} />
