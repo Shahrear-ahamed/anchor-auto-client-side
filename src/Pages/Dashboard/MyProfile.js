@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthState, useUpdateProfile } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
@@ -7,7 +7,7 @@ import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
-  const [updateProfile,] = useUpdateProfile(auth);
+  const [updateProfile] = useUpdateProfile(auth);
   const [user] = useAuthState(auth);
   const imageApi = "ba4ff4edefd1c59c93a156adaaba5a42";
   const {
@@ -15,14 +15,18 @@ const MyProfile = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { data: userData, isLoading } = useQuery("myProfile", () =>
-    fetch(`http://localhost:5000/user/${user.email}`, {
+  const {
+    data: userData,
+    isLoading,
+    refetch,
+  } = useQuery("myProfile", () =>
+    fetch(`http://localhost:5000/userupdate/${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     }).then((res) => res.json())
   );
-  
+
   if (isLoading) {
     return <Loading />;
   }
@@ -33,6 +37,7 @@ const MyProfile = () => {
 
     const userAccount = {
       name: user.displayName,
+      email: user.email,
       phone: data.number,
       address: data.address,
       education: data.education,
@@ -47,6 +52,7 @@ const MyProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          console.log(userAccount);
           updateProfile({ photoURL: data.data.url });
           fetch(`http://localhost:5000/userupdate/${user._id}`, {
             method: "PUT",
@@ -58,7 +64,7 @@ const MyProfile = () => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
+              refetch();
               // setUpdate(!update);
               toast.success("Update successfully");
             });
@@ -112,6 +118,7 @@ const MyProfile = () => {
             </label>
             <input
               type="number"
+              defaultValue={userData.number}
               placeholder="Your Mobile"
               {...register("number", {
                 required: {
@@ -135,6 +142,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
+              defaultValue={userData.address}
               placeholder="Your Address"
               {...register("address", {
                 required: {
@@ -158,7 +166,8 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              placeholder="Your Address"
+              defaultValue={userData.education}
+              placeholder="Your Education"
               {...register("education", {
                 required: {
                   value: true,
@@ -181,6 +190,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
+              defaultValue={userData.linkedin}
               placeholder="Your Address"
               {...register("linkedin", {
                 required: {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const ReviewModal = ({ showModalData, setShowModalData }) => {
-  const { name, email } = showModalData;
+  const { name, email, productName } = showModalData;
   const [error, setError] = useState("");
   const handleReview = (e) => {
     e.preventDefault();
@@ -11,11 +11,12 @@ const ReviewModal = ({ showModalData, setShowModalData }) => {
     const reviewData = {
       name,
       email,
+      productName,
       reviewMessage,
       rating,
     };
     if (rating && reviewMessage) {
-      fetch("http://localhost:5000/add-review", {
+      fetch("http://localhost:5000/review", {
         method: "POST",
         headers: {
           "content-type": "application/json",

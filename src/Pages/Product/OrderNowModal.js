@@ -27,6 +27,7 @@ const OrderNow = ({ tool, setModal }) => {
       paymentStatus: false,
       orderStatus: "Pending",
       price: tool.price,
+      review: false,
     };
     fetch(`http://localhost:5000/order/${user.email}`, {
       method: "POST",

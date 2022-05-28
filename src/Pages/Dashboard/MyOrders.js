@@ -70,7 +70,7 @@ const MyOrders = () => {
                   )}
                 </td>
                 <td>
-                  {order.orderStatus === "Delivered" ? (
+                  {order.review ? (
                     <label
                       onClick={() => setShowModalData(order)}
                       htmlFor="review-modal"
