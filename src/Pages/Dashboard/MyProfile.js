@@ -34,7 +34,6 @@ const MyProfile = () => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
-
     const userAccount = {
       name: user.displayName,
       email: user.email,
@@ -64,7 +63,6 @@ const MyProfile = () => {
             .then((res) => res.json())
             .then((result) => {
               refetch();
-              // setUpdate(!update);
               toast.success("Update successfully");
             });
         }
@@ -93,7 +91,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              placeholder="Doctor Name"
+              placeholder="User Name"
               value={user.displayName}
               readOnly
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
@@ -105,7 +103,7 @@ const MyProfile = () => {
             </label>
             <input
               type="email"
-              placeholder="Doctor email"
+              placeholder="User email"
               value={user.email}
               readOnly
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
@@ -117,7 +115,7 @@ const MyProfile = () => {
             </label>
             <input
               type="number"
-              defaultValue={userData.number}
+              defaultValue={userData.phone}
               placeholder="Your Mobile"
               {...register("number", {
                 required: {

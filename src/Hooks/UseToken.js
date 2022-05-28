@@ -3,10 +3,11 @@ import { useState } from "react";
 const Token = (user) => {
   const [token, setToken] = useState("");
   const email = user?.user?.email;
-  const data = { email, role: "user" };
+  const name = user?.user?.displayName;
+  const data = { email, name };
 
   if (email) {
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`http://localhost:5000/createuser/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

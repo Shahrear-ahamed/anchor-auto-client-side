@@ -1,10 +1,15 @@
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Loading from "../Shared/Loading";
 
 const ManageAllProduct = () => {
-  const { data: allProducts, isLoading } = useQuery("allProducts", () =>
+  const {
+    data: allProducts,
+    isLoading,
+    refetch,
+  } = useQuery("allProducts", () =>
     fetch("http://localhost:5000/products").then((res) => res.json())
   );
   if (isLoading) {
@@ -19,7 +24,12 @@ const ManageAllProduct = () => {
           authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        if (res.data.acknowledged) {
+          refetch();
+          toast.success("successfully deleted");
+        }
+      });
   };
   return (
     <div>

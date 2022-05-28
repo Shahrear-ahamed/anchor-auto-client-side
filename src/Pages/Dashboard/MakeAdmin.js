@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import Loading from "../Shared/Loading";
 
 const MakeAdmin = () => {
-  const [admin, setAdmin] = useState(false);
   const {
     data: users,
     isLoading,

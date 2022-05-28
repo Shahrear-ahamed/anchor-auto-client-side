@@ -1,19 +1,17 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    const imageApi = "ba4ff4edefd1c59c93a156adaaba5a42";
-
-    const name = e.target.name.value;
-    const img = e.target.img.files;
-    const price = parseInt(e.target.price.value);
-    const quantity = parseInt(e.target.quantity.value);
-    const desc = e.target.desc.value;
-    const minOrder = parseInt(e.target.minOrder.value);
-
-    // make image upload data
-    const image = img;
+  const imageApi = "ba4ff4edefd1c59c93a156adaaba5a42";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
+  const onSubmit = async (data) => {
+    const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
 
@@ -23,33 +21,38 @@ const AddProduct = () => {
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          const productData = {
-            name,
-            img: data.data.url,
-            price,
-            quantity,
-            desc,
-            minOrder,
+      .then((upload) => {
+        if (upload.success) {
+          const product = {
+            name: data.productName,
+            img: upload.data.url,
+            price: data.price,
+            quantity: data.quantity,
+            desc: data.desc,
+            minOrder: data.minOrder,
           };
-          fetch("http://localhost:5000/product", {
+          fetch(`http://localhost:5000/product`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
               authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-            body: JSON.stringify(productData),
+            body: JSON.stringify(product),
           })
             .then((res) => res.json())
-            .then((result) => console.log(result));
+            .then((result) => {
+              if (result.acknowledged) {
+                toast.success("Update successfully");
+                reset()
+              }
+            });
         }
       });
   };
   return (
     <div>
       <h2 className="dashboard-title">Add New Brand product</h2>
-      <form onSubmit={handleAddProduct} className="mb-10">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control  w-full md:max-w-md">
           <label className="label">
             <span className="label-text">
@@ -58,10 +61,22 @@ const AddProduct = () => {
           </label>
           <input
             type="text"
-            name="name"
             placeholder="Type here"
             className="input input-bordered w-full"
+            {...register("productName", {
+              required: {
+                value: true,
+                message: "Product Name is required",
+              },
+            })}
           />
+          <label className="label">
+            {errors.productName?.type === "required" && (
+              <span className="label-text text-red-600">
+                {errors.productName.message}
+              </span>
+            )}
+          </label>
         </div>
         <div className="form-control w-full md:max-w-md">
           <label className="label">
@@ -73,7 +88,20 @@ const AddProduct = () => {
             placeholder="price"
             name="img"
             className="input input-bordered"
+            {...register("img", {
+              required: {
+                value: true,
+                message: "Product image is required",
+              },
+            })}
           />
+          <label className="label">
+            {errors.img?.type === "required" && (
+              <span className="label-text text-red-600">
+                {errors.img.message}
+              </span>
+            )}
+          </label>
         </div>
         <div className="form-control  w-full md:max-w-md">
           <label className="label">
@@ -86,7 +114,20 @@ const AddProduct = () => {
               name="minOrder"
               placeholder="Minimum order"
               className="input input-bordered"
+              {...register("minOrder", {
+                required: {
+                  value: true,
+                  message: "Minimum Order is required",
+                },
+              })}
             />
+            <label className="label">
+              {errors.minOrder?.type === "required" && (
+                <span className="label-text text-red-600">
+                  {errors.minOrder.message}
+                </span>
+              )}
+            </label>
           </label>
         </div>
         <div className="form-control  w-full md:max-w-md">
@@ -100,7 +141,20 @@ const AddProduct = () => {
               name="price"
               placeholder="price"
               className="input input-bordered w-full"
+              {...register("price", {
+                required: {
+                  value: true,
+                  message: "Price is required",
+                },
+              })}
             />
+            <label className="label">
+              {errors.price?.type === "required" && (
+                <span className="label-text text-red-600">
+                  {errors.price.message}
+                </span>
+              )}
+            </label>
           </label>
         </div>
         <div className="form-control  w-full md:max-w-md">
@@ -114,7 +168,20 @@ const AddProduct = () => {
               name="quantity"
               placeholder="quantity"
               className="input input-bordered w-full"
+              {...register("quantity", {
+                required: {
+                  value: true,
+                  message: "Quantity is required",
+                },
+              })}
             />
+            <label className="label">
+              {errors.quantity?.type === "required" && (
+                <span className="label-text text-red-600">
+                  {errors.quantity.message}
+                </span>
+              )}
+            </label>
           </label>
         </div>
         <div className="form-control  w-full md:max-w-md">
@@ -125,7 +192,20 @@ const AddProduct = () => {
             className="textarea textarea-bordered h-24 w-full"
             name="desc"
             placeholder="Product desc"
+            {...register("desc", {
+              required: {
+                value: true,
+                message: "Description are required",
+              },
+            })}
           ></textarea>
+          <label className="label">
+            {errors.desc?.type === "required" && (
+              <span className="label-text text-red-600">
+                {errors.desc.message}
+              </span>
+            )}
+          </label>
         </div>
         <input
           type="submit"
