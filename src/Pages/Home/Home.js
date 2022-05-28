@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Shared/Footer";
 import Blogs from "./Blogs";
 import Hero from "./Hero";
 import HomeProduct from "./HomeProduct";
@@ -13,6 +14,7 @@ const Home = () => {
       <TrustedBy />
       <MadeBy />
       <Blogs />
+      <Footer />
     </>
   );
 };

@@ -20,6 +20,9 @@ import ManageAllProduct from "./Pages/Dashboard/ManageAllProduct";
 import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
+import AllProducts from "./Pages/Product/AllProducts";
+import Portfolio from "./Pages/Portfolio/Portfolio";
+import MyBlog from "./Pages/MyBlog/MyBlog";
 
 function App() {
   return (
@@ -58,13 +61,15 @@ function App() {
           <Route path="/dashboard/my-reviews" element={<MyReviews />} />
           <Route path="/dashboard/payment/:id" element={<Payment />} />
         </Route>
+        <Route path="/our-products" element={<AllProducts />} />
+        <Route path="/my-blog" element={<MyBlog />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/password-reset" element={<PassReset />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      {/* <Footer /> */}
       <ToastContainer />
     </>
   );
