@@ -9,8 +9,7 @@ const PortfolioSkills = () => {
   }, []);
   return (
     <div
-      name="skills"
-      className="w-full py-10 md:py-0 flex items-center bg-dark"
+      className="w-full flex items-center bg-dark"
     >
       {/* Container */}
       <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">
