@@ -4,7 +4,11 @@ import auth from "../firebase.init";
 
 const UseDataLoad = () => {
   const [user] = useAuthState(auth);
-  const { data: orders, isLoading } = useQuery(["myOrders", user.email], () =>
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery(["myOrders", user.email], () =>
     fetch(`http://localhost:5000/myorder/${user.email}`, {
       method: "GET",
       headers: {
@@ -12,6 +16,6 @@ const UseDataLoad = () => {
       },
     }).then((res) => res.json())
   );
-  return [orders, isLoading];
+  return [orders, isLoading, refetch];
 };
 export default UseDataLoad;

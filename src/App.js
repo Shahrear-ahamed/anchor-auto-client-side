@@ -14,7 +14,6 @@ import RequireAuth from "./Pages/Authontication/RequireAuth";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import SingleProduct from "./Pages/Product/SingleProduct";
 import MyOrders from "./Pages/Dashboard/MyOrders";
-import AddReview from "./Pages/Dashboard/AddReview";
 import Payment from "./Pages/Dashboard/Payment";
 
 function App() {
@@ -45,7 +44,6 @@ function App() {
           <Route path="/dashboard/make-admin" element={<MyProfile />} />
           <Route path="/dashboard/manage-product" element={<MyProfile />} />
           <Route path="/dashboard/my-orders" element={<MyOrders />} />
-          <Route path="/dashboard/add-review" element={<AddReview />} />
           <Route path="/dashboard/payment/:id" element={<Payment />} />
         </Route>
         <Route path="/login" element={<Login />} />
