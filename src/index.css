@@ -16,8 +16,8 @@
   @apply text-gray-700 hover:text-secondary duration-300;
 }
 
-.dashboard-title{
-  @apply text-primary text-3xl font-semibold
+.dashboard-title {
+  @apply text-primary text-3xl font-semibold;
 }
 
 html {
@@ -46,4 +46,19 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.content-div,
+.comingSoon-div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+.content-div:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(112, 157, 255, 0.5),
+    hsla(242, 74%, 62%, 0.5)
+  ) !important;
 }
