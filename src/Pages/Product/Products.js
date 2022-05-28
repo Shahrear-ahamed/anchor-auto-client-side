@@ -7,7 +7,7 @@ const Products = ({ tool }) => {
   return (
     <div className="w-full px-4 shadow-md py-7 rounded-md">
       <img src={img} alt={name} className="w-4/5 mx-auto" />
-      <h2 className="text-xl h-[70px]">{name}</h2>
+      <h2 className="text-xl min-h-[70px]">{name}</h2>
       <div className="flex justify-between font-semibold">
         <p>Price: ${price}</p>
         <p>Quantity: {quantity}</p>

@@ -4,7 +4,6 @@ import Login from "./Pages/Authontication/Login";
 import PassReset from "./Pages/Authontication/PassReset";
 import Registration from "./Pages/Authontication/Registration";
 import Home from "./Pages/Home/Home";
-import Footer from "./Pages/Shared/Footer";
 import Navbar from "./Pages/Shared/Navbar";
 import PageNotFound from "./Pages/Shared/PageNotFound";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
+import PortfolioTop from "../MyBlog/PortfolioTop";
+import PortfolioFooter from "./PortfolioFooter";
 
 const Portfolio = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <>
+      <PortfolioTop />
+      <PortfolioFooter />
+    </>
+  );
 };
 
 export default Portfolio;
