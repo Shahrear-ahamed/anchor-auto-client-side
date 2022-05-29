@@ -7,7 +7,7 @@ const Token = (user) => {
   const data = { email, name };
 
   if (email) {
-    fetch(`http://localhost:5000/createuser/${email}`, {
+    fetch(`http://localhost:5000/userprofile/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -4,7 +4,7 @@ const MyBlog = () => {
   return (
     <div className="container mx-auto py-10 space-y-5">
       {/* question number one */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">
@@ -16,7 +16,7 @@ const MyBlog = () => {
         </div>
       </div>
       {/* question number two */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">
@@ -29,7 +29,7 @@ const MyBlog = () => {
         </div>
       </div>
       {/* question number three */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">
@@ -41,7 +41,7 @@ const MyBlog = () => {
         </div>
       </div>
       {/* question number four */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">
@@ -55,7 +55,7 @@ const MyBlog = () => {
         </div>
       </div>
       {/* question number five */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">
@@ -69,7 +69,7 @@ const MyBlog = () => {
         </div>
       </div>
       {/* question number six */}
-      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-500">
+      <div className="collapse shadow-lg w-[90%] max-w-2xl mx-auto rounded-lg border-2 border-gray-300">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
           <h2 className="text-xl">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const UseAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
+  const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
     const url = `http://localhost:5000/user/${user}`;
     fetch(url, {
@@ -14,9 +15,10 @@ const UseAdmin = (user) => {
       .then((data) => {
         if (data.role === "admin") {
           setAdmin(true);
+          setAdminLoading(false);
         }
       });
   }, [user]);
-  return [admin];
+  return [admin, adminLoading];
 };
 export default UseAdmin;

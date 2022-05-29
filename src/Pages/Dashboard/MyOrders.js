@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UseDataLoad from "../../Hooks/UseDataLoad";
+import UseDataLoad from "../../Hooks/useDataLoad";
 import Loading from "../Shared/Loading";
 import DeleteModal from "./DeleteModal";
 import ReviewModal from "./ReviewModal";

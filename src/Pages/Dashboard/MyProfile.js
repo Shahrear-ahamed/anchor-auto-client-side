@@ -20,7 +20,8 @@ const MyProfile = () => {
     isLoading,
     refetch,
   } = useQuery("myProfile", () =>
-    fetch(`http://localhost:5000/userupdate/${user.email}`, {
+    fetch(`http://localhost:5000/userprofile/${user.email}`, {
+      method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -52,7 +53,7 @@ const MyProfile = () => {
       .then((data) => {
         if (data.success) {
           updateProfile({ photoURL: data.data.url });
-          fetch(`http://localhost:5000/userupdate/${user._id}`, {
+          fetch(`http://localhost:5000/userprofile/${user.email}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json",
@@ -115,7 +116,7 @@ const MyProfile = () => {
             </label>
             <input
               type="number"
-              defaultValue={userData.phone}
+              defaultValue={userData?.phone}
               placeholder="Your Mobile"
               {...register("number", {
                 required: {
@@ -139,7 +140,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              defaultValue={userData.address}
+              defaultValue={userData?.address}
               placeholder="Your Address"
               {...register("address", {
                 required: {
@@ -163,7 +164,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              defaultValue={userData.education}
+              defaultValue={userData?.education}
               placeholder="Your Education"
               {...register("education", {
                 required: {
@@ -187,7 +188,7 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              defaultValue={userData.linkedin}
+              defaultValue={userData?.linkedin}
               placeholder="Your Address"
               {...register("linkedin", {
                 required: {

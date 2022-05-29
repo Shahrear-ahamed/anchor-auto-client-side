@@ -6,7 +6,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import UseToken from "../../Hooks/UseToken";
+import UseToken from "../../Hooks/useToken";
 import google from "../../Assets/google.svg";
 import { toast } from "react-toastify";
 

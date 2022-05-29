@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import UseToken from "../../Hooks/UseToken";
+import UseToken from "../../Hooks/useToken";
 import google from "../../Assets/google.svg";
 
 const Registration = () => {
