@@ -1,8 +1,8 @@
-import React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useParams } from "react-router-dom";
+import React from "react";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import Loading from "../Shared/Loading";
 import CheckOut from "./CheckOut";
 const stripePromise = loadStripe(

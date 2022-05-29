@@ -26,6 +26,7 @@ const MyOrders = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Successfully deleted");
+          setDeleteModal(null);
           refetch();
         }
       });

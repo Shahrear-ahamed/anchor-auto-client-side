@@ -63,9 +63,13 @@ const ManageAllOrders = () => {
                 <td>{product.productName}</td>
                 <td>{product.quantity}</td>
                 <td>
-                  {product.paymentStatus && (
+                  {product.paymentStatus ? (
                     <span className="bg-green-500 text-white py-1 px-3">
                       Paid
+                    </span>
+                  ) : (
+                    <span className="bg-warning text-white py-1 px-3">
+                      Unpaid
                     </span>
                   )}
                 </td>

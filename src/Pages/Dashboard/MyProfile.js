@@ -70,9 +70,9 @@ const MyProfile = () => {
       });
   };
   return (
-    <div>
+    <div className="w-full">
       <h2 className="dashboard-title">My Profile</h2>
-      <div className="w-full md:w-3/4 my-5">
+      <div className="w-full md:w-3/4 my-5 pb-14">
         <div className="avatar placeholder">
           <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
             {user.photoURL ? (

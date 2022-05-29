@@ -1,10 +1,12 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import Loading from "../Shared/Loading";
+import AdminDeleteModal from "./AdminDeleteModal";
 
 const ManageAllProduct = () => {
+  const [deleteModal, setDeleteModal] = useState(null);
   const {
     data: allProducts,
     isLoading,
@@ -28,6 +30,7 @@ const ManageAllProduct = () => {
         if (res.data.acknowledged) {
           refetch();
           toast.success("successfully deleted");
+          setDeleteModal(null);
         }
       });
   };
@@ -65,18 +68,25 @@ const ManageAllProduct = () => {
                 <td>{product.quantity}</td>
                 <td>{product.minOrder}</td>
                 <td>
-                  <button
-                    onClick={() => handleProductDelete(product._id)}
-                    className="bg-red-500 text-white hover:bg-red-600 px-3 py-1 rounded-md"
+                  <label
+                    onClick={() => setDeleteModal(product)}
+                    htmlFor="adminDeleteModal"
+                    className="btn btn-sm border-0 hover:bg-red-600 bg-red-500 text-white"
                   >
-                    Delete
-                  </button>
+                    Cancel
+                  </label>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {deleteModal && (
+        <AdminDeleteModal
+          deleteModal={deleteModal}
+          AdminDeleteModal={handleProductDelete}
+        />
+      )}
     </div>
   );
 };

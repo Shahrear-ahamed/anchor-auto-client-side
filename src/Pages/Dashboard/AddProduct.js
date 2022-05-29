@@ -52,7 +52,7 @@ const AddProduct = () => {
   return (
     <div>
       <h2 className="dashboard-title">Add New Brand product</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="pb-20">
         <div className="form-control  w-full md:max-w-md">
           <label className="label">
             <span className="label-text">
