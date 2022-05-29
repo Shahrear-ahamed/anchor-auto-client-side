@@ -23,7 +23,6 @@ const Login = () => {
   } = useForm();
   const [token] = UseToken(user || gUser);
   const from = location.state?.form?.pathname || "/";
-
   useEffect(() => {
     if (token) {
       toast.success("Login successfully");

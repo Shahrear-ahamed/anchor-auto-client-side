@@ -13,7 +13,7 @@ const RequireAdmin = ({ children }) => {
   if (loading || adminLoading) {
     return <Loading />;
   }
-
+  console.log(location);
   // return to login page
   if (!user || !admin) {
     return <Navigate to="/login" state={{ from: location }} replace />;
