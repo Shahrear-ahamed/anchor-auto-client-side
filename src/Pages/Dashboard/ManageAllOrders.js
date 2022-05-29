@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../Shared/Loading";
+import AdminDeleteOrder from "./AdminDeleteOrder";
 
 const ManageAllOrders = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [adminDeleteModal, setAdminDeleteModal] = useState(null);
   const [reFetch, setReFetch] = useState(null);
   useEffect(() => {
     const url = "http://localhost:5000/order";
@@ -33,7 +35,22 @@ const ManageAllOrders = () => {
         toast.success("Successfully delivered");
         setReFetch(!reFetch);
       });
-    // console.log(id);
+  };
+  const productDeleteByAdmin = (id) => {
+    const url = `http://localhost:5000/order/${id}`;
+    axios
+      .delete(url, {
+        headers: {
+          authorization: `Bearar ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.acknowledged) {
+          toast.success("Successfully deleted");
+          setAdminDeleteModal(null);
+          setReFetch(!reFetch);
+        }
+      });
   };
   return (
     <div>
@@ -84,12 +101,28 @@ const ManageAllOrders = () => {
                         Delivery
                       </button>
                     )}
+                  {!product.paymentStatus &&
+                    product.orderStatus !== "Delivered" && (
+                      <label
+                        onClick={() => setAdminDeleteModal(product)}
+                        htmlFor="deleteOrderAdmin"
+                        className="btn btn-sm border-0 hover:bg-red-600 bg-red-500 text-white"
+                      >
+                        Cancel
+                      </label>
+                    )}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {adminDeleteModal && (
+        <AdminDeleteOrder
+          adminDeleteModal={adminDeleteModal}
+          productDeleteByAdmin={productDeleteByAdmin}
+        />
+      )}
     </div>
   );
 };
