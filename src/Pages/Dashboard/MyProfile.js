@@ -10,11 +10,7 @@ const MyProfile = () => {
   const [updateProfile] = useUpdateProfile(auth);
   const [user] = useAuthState(auth);
   const imageApi = "ba4ff4edefd1c59c93a156adaaba5a42";
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const {
     data: userData,
     isLoading,
@@ -44,28 +40,35 @@ const MyProfile = () => {
       linkedin: data.linkedin,
     };
 
-    const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
-    fetch(url, {
-      method: "POST",
-      body: formData,
+    if (data.image.length > 0) {
+      const url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            refetch();
+            updateProfile({ photoURL: data.data.url });
+            toast.success("Image update successfully");
+          }
+        });
+    }
+
+    fetch(`http://localhost:5000/userprofile/${user.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+      body: JSON.stringify(userAccount),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          updateProfile({ photoURL: data.data.url });
-          fetch(`http://localhost:5000/userprofile/${user.email}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-            body: JSON.stringify(userAccount),
-          })
-            .then((res) => res.json())
-            .then((result) => {
-              refetch();
-              toast.success("Update successfully");
-            });
+      .then((result) => {
+        if (result.acknowledged) {
+          refetch();
+          toast.success("Update successfully");
         }
       });
   };
@@ -118,21 +121,9 @@ const MyProfile = () => {
               type="number"
               defaultValue={userData?.phone}
               placeholder="Your Mobile"
-              {...register("number", {
-                required: {
-                  value: true,
-                  message: "Number is required",
-                },
-              })}
+              {...register("number")}
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
             />
-            <label className="label">
-              {errors.number?.type === "required" && (
-                <span className="label-text text-red-600">
-                  {errors.number.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full max-w-md">
             <label className="label">
@@ -142,21 +133,9 @@ const MyProfile = () => {
               type="text"
               defaultValue={userData?.address}
               placeholder="Your Address"
-              {...register("address", {
-                required: {
-                  value: true,
-                  message: "Address is required",
-                },
-              })}
+              {...register("address")}
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
             />
-            <label className="label">
-              {errors.address?.type === "required" && (
-                <span className="label-text text-red-600">
-                  {errors.address.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full max-w-md">
             <label className="label">
@@ -166,21 +145,9 @@ const MyProfile = () => {
               type="text"
               defaultValue={userData?.education}
               placeholder="Your Education"
-              {...register("education", {
-                required: {
-                  value: true,
-                  message: "education is required",
-                },
-              })}
+              {...register("education")}
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
             />
-            <label className="label">
-              {errors.education?.type === "required" && (
-                <span className="label-text text-red-600">
-                  {errors.education.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full max-w-md">
             <label className="label">
@@ -190,21 +157,9 @@ const MyProfile = () => {
               type="text"
               defaultValue={userData?.linkedin}
               placeholder="Your Address"
-              {...register("linkedin", {
-                required: {
-                  value: true,
-                  message: "Linkedin is required",
-                },
-              })}
+              {...register("linkedin")}
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
             />
-            <label className="label">
-              {errors.linkedin?.type === "required" && (
-                <span className="label-text text-red-600">
-                  {errors.linkedin.message}
-                </span>
-              )}
-            </label>
           </div>
           <div className="form-control w-full max-w-md">
             <label className="label">
@@ -213,21 +168,9 @@ const MyProfile = () => {
             <input
               type="file"
               accept="image/*"
-              {...register("image", {
-                required: {
-                  value: true,
-                  message: "Image is required",
-                },
-              })}
+              {...register("image")}
               className="input input-bordered w-full px-2 md:px-5 focus:outline-none"
             />
-            <label className="label">
-              {errors.name?.type === "required" && (
-                <span className="label-text text-red-600">
-                  {errors.name.message}
-                </span>
-              )}
-            </label>
           </div>
           <input
             className="login-button text-black w-32 py-3 rounded-sm mt-5 cursor-pointer"

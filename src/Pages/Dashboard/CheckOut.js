@@ -67,7 +67,6 @@ const CheckOut = ({ order }) => {
         },
       }
     );
-    console.log(paymentIntent, intentError);
     if (intentError) {
       setProcessing(false);
       setServerClientSecret(intentError?.message);

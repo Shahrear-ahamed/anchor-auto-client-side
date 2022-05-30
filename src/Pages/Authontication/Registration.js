@@ -20,7 +20,7 @@ const Registration = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [sendEmailVerification] = useSendEmailVerification(auth);
   const [updateProfile] = useUpdateProfile(auth);
-  const from = location.state?.form?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
