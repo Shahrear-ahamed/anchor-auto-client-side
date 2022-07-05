@@ -4,7 +4,7 @@ const UseAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
-    const url = `http://localhost:5000/user/${user}`;
+    const url = `https://anchor-tools.herokuapp.com/user/${user}`;
     fetch(url, {
       method: "GET",
       headers: {

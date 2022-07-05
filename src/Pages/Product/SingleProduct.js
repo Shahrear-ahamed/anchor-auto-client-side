@@ -8,7 +8,7 @@ const SingleProduct = () => {
   const [modal, setModal] = useState(false);
   const { id } = useParams();
   const { data: tool, isLoading } = useQuery("singleProduct", () =>
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://anchor-tools.herokuapp.com/product/${id}`, {
       method: "get",
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,

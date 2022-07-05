@@ -16,7 +16,7 @@ const MyProfile = () => {
     isLoading,
     refetch,
   } = useQuery("myProfile", () =>
-    fetch(`http://localhost:5000/userprofile/${user.email}`, {
+    fetch(`https://anchor-tools.herokuapp.com/userprofile/${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -56,7 +56,7 @@ const MyProfile = () => {
         });
     }
 
-    fetch(`http://localhost:5000/userprofile/${user.email}`, {
+    fetch(`https://anchor-tools.herokuapp.com/userprofile/${user.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

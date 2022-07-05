@@ -16,7 +16,7 @@ const CheckOut = ({ order }) => {
 
   const total = parseInt(quantity) * price;
   useEffect(() => {
-    fetch("http://localhost:5000/make-payment", {
+    fetch("https://anchor-tools.herokuapp.com/make-payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -82,7 +82,7 @@ const CheckOut = ({ order }) => {
         transactionId,
       };
 
-      fetch(`http://localhost:5000/order/${_id}`, {
+      fetch(`https://anchor-tools.herokuapp.com/order/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

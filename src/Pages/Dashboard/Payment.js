@@ -11,7 +11,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/singleorderitem/${id}`;
+  const url = `https://anchor-tools.herokuapp.com/singleorderitem/${id}`;
   const { data: order, isLoading } = useQuery("order", () =>
     fetch(url, {
       method: "GET",

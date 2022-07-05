@@ -29,7 +29,7 @@ const OrderNow = ({ tool, setModal }) => {
       price: tool.price,
       review: false,
     };
-    fetch(`http://localhost:5000/order/${user.email}`, {
+    fetch(`https://anchor-tools.herokuapp.com/order/${user.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

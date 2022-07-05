@@ -9,7 +9,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("makeAdmin", () =>
-    fetch("http://localhost:5000/user", {
+    fetch("https://anchor-tools.herokuapp.com/user", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     return <Loading />;
   }
   const submitAdmin = (email) => {
-    const url = `http://localhost:5000/user/${email}`;
+    const url = `https://anchor-tools.herokuapp.com/user/${email}`;
     fetch(url, {
       method: "PUT",
       headers: {

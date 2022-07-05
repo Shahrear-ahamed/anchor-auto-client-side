@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const Blog = () => {
   const { id } = useParams();
   const { data: blog } = useQuery("blog", () =>
-    fetch(`http://localhost:5000/news/${id}`).then((res) => res.json())
+    fetch(`https://anchor-tools.herokuapp.com/news/${id}`).then((res) => res.json())
   );
   return (
     <div className="my-10">

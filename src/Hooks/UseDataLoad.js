@@ -9,7 +9,7 @@ const UseDataLoad = () => {
     isLoading,
     refetch,
   } = useQuery(["myOrders", user.email], () =>
-    fetch(`http://localhost:5000/myorder/${user.email}`, {
+    fetch(`https://anchor-tools.herokuapp.com/myorder/${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,

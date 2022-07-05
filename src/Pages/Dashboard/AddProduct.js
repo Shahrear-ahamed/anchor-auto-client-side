@@ -31,7 +31,7 @@ const AddProduct = () => {
             desc: data.desc,
             minOrder: data.minOrder,
           };
-          fetch(`http://localhost:5000/product`, {
+          fetch(`https://anchor-tools.herokuapp.com/product`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

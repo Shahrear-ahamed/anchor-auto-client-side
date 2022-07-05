@@ -5,7 +5,7 @@ import Loading from "../Shared/Loading";
 
 const HomeProduct = () => {
   const { data: tools , isLoading} = useQuery("homeProduct", () =>
-    fetch("http://localhost:5000/homeproduct").then((res) => res.json())
+    fetch("https://anchor-tools.herokuapp.com/homeproduct").then((res) => res.json())
   );
   if(isLoading){
       return <Loading />

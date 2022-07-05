@@ -16,7 +16,7 @@ const ReviewModal = ({ showModalData, setShowModalData }) => {
       rating,
     };
     if (rating && reviewMessage) {
-      fetch("http://localhost:5000/review", {
+      fetch("https://anchor-tools.herokuapp.com/review", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -12,13 +12,13 @@ const ManageAllProduct = () => {
     isLoading,
     refetch,
   } = useQuery("allProducts", () =>
-    fetch("http://localhost:5000/products").then((res) => res.json())
+    fetch("https://anchor-tools.herokuapp.com/products").then((res) => res.json())
   );
   if (isLoading) {
     return <Loading />;
   }
   const handleProductDelete = (id) => {
-    const url = `http://localhost:5000/product/${id}`;
+    const url = `https://anchor-tools.herokuapp.com/product/${id}`;
     axios
       .delete(url, {
         method: "DELETE",

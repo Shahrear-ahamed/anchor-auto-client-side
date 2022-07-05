@@ -6,7 +6,7 @@ import Products from "./Products";
 
 const AllProducts = () => {
   const { data: products, isLoading } = useQuery("allproducts", () =>
-    fetch("http://localhost:5000/products").then((res) => res.json())
+    fetch("https://anchor-tools.herokuapp.com/products").then((res) => res.json())
   );
   if (isLoading) {
     return <Loading />;

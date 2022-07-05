@@ -10,7 +10,7 @@ const ManageAllOrders = () => {
   const [adminDeleteModal, setAdminDeleteModal] = useState(null);
   const [reFetch, setReFetch] = useState(null);
   useEffect(() => {
-    const url = "http://localhost:5000/order";
+    const url = "https://anchor-tools.herokuapp.com/order";
     axios(url, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -24,7 +24,7 @@ const ManageAllOrders = () => {
     return <Loading />;
   }
   const deliverySubmit = (id) => {
-    fetch(`http://localhost:5000/delivery/${id}`, {
+    fetch(`https://anchor-tools.herokuapp.com/delivery/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -37,7 +37,7 @@ const ManageAllOrders = () => {
       });
   };
   const productDeleteByAdmin = (id) => {
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://anchor-tools.herokuapp.com/order/${id}`;
     axios
       .delete(url, {
         headers: {

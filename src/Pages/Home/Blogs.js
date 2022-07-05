@@ -5,7 +5,7 @@ const Blogs = () => {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/news")
+    fetch("https://anchor-tools.herokuapp.com/news")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);

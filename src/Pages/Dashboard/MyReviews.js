@@ -6,7 +6,7 @@ import Loading from "../Shared/Loading";
 
 const MyReviews = () => {
   const [user, loading] = useAuthState(auth);
-  const url = `http://localhost:5000/review/${user.email}`;
+  const url = `https://anchor-tools.herokuapp.com/review/${user.email}`;
   const { data: reviews, isLoading } = useQuery("reviews", () =>
     fetch(url).then((res) => res.json())
   );

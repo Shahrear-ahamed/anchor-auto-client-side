@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UseDataLoad from "../../Hooks/useDataLoad";
+import UseDataLoad from "../../Hooks/UseDataLoad";
 import Loading from "../Shared/Loading";
 import DeleteModal from "./DeleteModal";
 import ReviewModal from "./ReviewModal";
@@ -16,7 +16,7 @@ const MyOrders = () => {
     return <Loading />;
   }
   const deleteOrder = (id) => {
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://anchor-tools.herokuapp.com/order/${id}`;
     axios
       .delete(url, {
         headers: {

@@ -7,7 +7,7 @@ const Token = (user) => {
   const data = { email, name };
 
   if (email) {
-    fetch(`http://localhost:5000/userlogin/${email}`, {
+    fetch(`https://anchor-tools.herokuapp.com/userlogin/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
